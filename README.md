@@ -52,6 +52,15 @@ TASK-6 SCREENSHOTS-
 <img width="1440" height="900" alt="Screenshot 2025-12-05 at 10 21 35 AM" src="https://github.com/user-attachments/assets/5abec72a-99eb-487d-ab59-42e4fb700255" />
 <img width="1440" height="900" alt="Screenshot 2025-12-05 at 10 21 51 AM" src="https://github.com/user-attachments/assets/05015ca6-f870-4cdf-9ee5-7f264d87dcd6" />
 <img width="1440" height="900" alt="Screenshot 2025-12-05 at 10 22 38 AM" src="https://github.com/user-attachments/assets/5612a199-849e-4ad1-aa21-31e69e454d66" />
+<img width="1440" height="900" alt="Screenshot 2025-12-05 at 11 40 11 AM" src="https://github.com/user-attachments/assets/d85889e9-b4cb-4a87-9a09-65ac268f2729" />
+<img width="1440" height="900" alt="Screenshot 2025-12-05 at 11 42 01 AM" src="https://github.com/user-attachments/assets/b853472d-8649-40dd-9166-ab564391289e" />
+<img width="1440" height="900" alt="Screenshot 2025-12-05 at 11 42 23 AM" src="https://github.com/user-attachments/assets/794c7e42-b7e5-406e-908a-c810f496c776" />
+<img width="1440" height="900" alt="Screenshot 2025-12-05 at 11 42 31 AM" src="https://github.com/user-attachments/assets/08db04f3-6f7c-4620-9583-436a8ae1375f" />
+<img width="1440" height="900" alt="Screenshot 2025-12-05 at 11 43 45 AM" src="https://github.com/user-attachments/assets/6b016c5a-77bf-433a-9840-796e0422aee7" />
+
+
+
+
 
 EXTRA SCREENSHOTS- 
 
