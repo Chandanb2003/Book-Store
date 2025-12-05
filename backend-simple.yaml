@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookstore-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bookstore-backend
+  template:
+    metadata:
+      labels:
+        app: bookstore-backend
+    spec:
+      containers:
+      - name: backend
+        image: ghcr.io/iliamalafeev/bookstore-backend:latest  # WORKING IMAGE
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:postgresql://bookstore-postgres:5432/bookstore"
+        - name: SPRING_DATASOURCE_USERNAME
+          value: "bookstore"
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: "bookstore"

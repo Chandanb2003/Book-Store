@@ -1,0 +1,93 @@
+version: "3.9"
+
+services:
+
+  # -------------------------
+  # ✅ PostgreSQL Database
+  # -------------------------
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: BookStore_DB
+      POSTGRES_USER: bookstoreadmin
+      POSTGRES_PASSWORD: bookstoreadmin
+    ports:
+      - "5432:5432"
+    volumes:
+      - bookstore_postgres:/var/lib/postgresql/data
+    networks:
+      - bookstore-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bookstoreadmin -d BookStore_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # -------------------------
+  # ✅ Adminer UI
+  # -------------------------
+  adminer:
+    image: adminer
+    container_name: adminer-ui
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
+    networks:
+      - bookstore-network
+
+  # -------------------------
+  # ✅ Spring Boot Backend
+  # -------------------------
+  bookstore-springboot-backend:
+    build: ./BookStore_Backend
+    container_name: bookstore-springboot-backend-container
+    image: bookstore-backend-image
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/BookStore_DB
+      SPRING_DATASOURCE_USERNAME: bookstoreadmin
+      SPRING_DATASOURCE_PASSWORD: bookstoreadmin
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      JWT_SECRET: dXNlci1zdXBlci1zZWNyZXQta2V5LW1pbjMyY2hhcnM=
+      STRIPE_KEY_SECRET: sk_test_1234567890abcdef
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep java > /dev/null || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks:
+      - bookstore-network
+
+  # -------------------------
+  # ✅ React Frontend
+  # -------------------------
+  bookstore-react-frontend:
+    build: ./BookStore_Frontend
+    container_name: bookstore-react-frontend-container
+    image: bookstore-frontend-image
+    ports:
+      - "3000:4173"
+    depends_on:
+      - bookstore-springboot-backend
+    networks:
+      - bookstore-network
+
+# -------------------------
+# ✅ Volumes
+# -------------------------
+volumes:
+  bookstore_postgres:
+
+# -------------------------
+# ✅ Networks
+# -------------------------
+networks:
+  bookstore-network:
+    driver: bridge
+

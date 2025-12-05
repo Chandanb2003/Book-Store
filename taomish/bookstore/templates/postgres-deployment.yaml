@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookstore-postgres
+spec:
+  selector:
+    matchLabels:
+      app: bookstore-postgres
+  template:
+    metadata:
+      labels:
+        app: bookstore-postgres
+    spec:
+      containers:
+      - name: postgres
+        image: {{ .Values.postgres.image }}
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: bookstore-db-secret
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: bookstore-db-secret
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: bookstore-db-secret
+              key: POSTGRES_DB
+        ports:
+        - containerPort: {{ .Values.postgres.port }}

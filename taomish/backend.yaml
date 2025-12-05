@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookstore-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bookstore-backend
+  template:
+    metadata:
+      labels:
+        app: bookstore-backend
+    spec:
+      nodeSelector:
+        role: bookstore
+      containers:
+      - name: backend
+        image: ivangfr/springboot-postgresql-restapi:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:postgresql://bookstore-postgres:5432/bookstore"
+        - name: SPRING_DATASOURCE_USERNAME
+          value: "bookstore"
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: "bookstore"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bookstore-backend-svc
+spec:
+  selector:
+    app: bookstore-backend
+  ports:
+  - port: 8080
+    targetPort: 8080

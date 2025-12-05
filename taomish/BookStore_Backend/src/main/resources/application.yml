@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/BookStore_DB}
+    username: ${SPRING_DATASOURCE_USERNAME:bookstoreadmin}
+    password: ${SPRING_DATASOURCE_PASSWORD:bookstoreadmin}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+jwt:
+  secret: ${JWT_SECRET:your-super-secret-jwt-key-min32chars1234567890ABCD}
+
+stripe:
+  key:
+    secret: ${STRIPE_KEY_SECRET:sk_test_1234567890abcdef}
+
+# ✅ Add this block for actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+server:
+  port: 8080
+  address: 0.0.0.0
+

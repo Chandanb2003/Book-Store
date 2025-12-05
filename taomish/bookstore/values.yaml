@@ -1,0 +1,21 @@
+backend:
+  image: kennethreitz/httpbin
+  replicas: 2
+  port: 80
+
+frontend:
+  image: nginx:latest
+  replicas: 2
+  port: 80
+
+postgres:
+  image: postgres:15
+  user: bookstore
+  password: bookstore
+  db: bookstore
+  port: 5432
+
+ingress:
+  enabled: true
+  host: bookstore.nip.io
+  tls: false

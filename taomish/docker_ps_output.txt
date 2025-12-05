@@ -1,0 +1,5 @@
+CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS                   PORTS                                                   NAMES
+7e4682579d36   bookstore-frontend-image   "docker-entrypoint.s…"   3 minutes ago   Up 3 minutes             3000/tcp, 0.0.0.0:3000->4173/tcp, [::]:3000->4173/tcp   bookstore-react-frontend-container
+bfe9ade4bc66   adminer                    "entrypoint.sh docke…"   3 minutes ago   Up 3 minutes             0.0.0.0:8081->8080/tcp, [::]:8081->8080/tcp             adminer-ui
+ab9c99828661   bookstore-backend-image    "java -jar app.jar"      3 minutes ago   Up 3 minutes (healthy)   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp             bookstore-springboot-backend-container
+2e5de4c3c41c   postgres:15-alpine         "docker-entrypoint.s…"   3 minutes ago   Up 3 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp             postgres-db

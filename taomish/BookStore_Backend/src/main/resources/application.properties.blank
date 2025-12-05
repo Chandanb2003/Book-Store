@@ -1,0 +1,39 @@
+#----------------------------------------------------------------------------------------------------------------
+
+#--------------------------
+# Datasource Configuration
+#--------------------------
+
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.url=${POSTGRES_URL:jdbc:postgresql://localhost:5432/BookStore_local_DB}
+spring.datasource.username=${POSTGRES_USER:adminusername}
+spring.datasource.password=${POSTGRES_PASSWORD:adminpassword}
+spring.sql.init.mode=always
+
+#----------------------------------------------------------------------------------------------------------------
+
+#--------------------------
+# Hibernate Configuration
+#--------------------------
+
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.show_sql=true
+
+#----------------------------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------
+# JWT secret used for generating JWT tokens, base64 encoded
+#-----------------------------------------------------------
+
+jwt_secret=
+
+#----------------------------------------------------------------------------------------------------------------
+
+#-------------------
+# Stripe secret key
+#-------------------
+
+stripe.key.secret=
+
+#----------------------------------------------------------------------------------------------------------------
